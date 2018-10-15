@@ -41,6 +41,20 @@ class CreateItems extends React.Component {
     this.setState({ [name]: val })
   }
 
+  uploadFile = async (e) => {
+    e.preventDefault();
+    const files = e.target.files;
+    const data = new FormData();
+    data.append('file', files[0]);
+    data.append('upload_preset', 'sickfits');
+    const res = await fetch('https://api.cloudinary.com/v1_1/dm4evjijl/image/upload', {
+      method: 'POST',
+      body: data
+    })
+    const file = await res.json();
+    this.setState({ image: file.secure_url, largeImage: file.eager[0].url })
+  }
+
   render() {
     return (
       <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state} >
@@ -56,13 +70,22 @@ class CreateItems extends React.Component {
             }}>
               <ErrorMessage error={error} />
               <fieldset disabled={loading} aria-busy={loading}>
+                <label htmlFor="file">
+                  File
+                <input
+                    type="file" id="file"
+                    name="price" placeholder="Upload an Image" required
+                    value={this.state.image}
+                    onChange={this.uploadFile}
+                  />
+                </label>
                 <label htmlFor="title">
                   Title
                 <input
                     type="text" id="title"
                     name="title" placeholder="Title" required
                     value={this.state.title}
-                    onChange={this.handleChange}
+                    onChange={this.uploadFile}
                   />
                 </label>
                 <label htmlFor="price">
@@ -76,7 +99,7 @@ class CreateItems extends React.Component {
                 </label>
                 <label htmlFor="description">
                   Description
-                <textarea
+                  <textarea
                     type="text" id="description"
                     name="description" placeholder="Enter a description" required
                     value={this.state.description}
