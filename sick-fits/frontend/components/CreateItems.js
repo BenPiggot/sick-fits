@@ -42,7 +42,6 @@ class CreateItems extends React.Component {
   }
 
   uploadFile = async (e) => {
-    e.preventDefault();
     const files = e.target.files;
     const data = new FormData();
     data.append('file', files[0]);
@@ -75,7 +74,6 @@ class CreateItems extends React.Component {
                 <input
                     type="file" id="file"
                     name="price" placeholder="Upload an Image" required
-                    value={this.state.image}
                     onChange={this.uploadFile}
                   />
                 </label>
@@ -85,7 +83,7 @@ class CreateItems extends React.Component {
                     type="text" id="title"
                     name="title" placeholder="Title" required
                     value={this.state.title}
-                    onChange={this.uploadFile}
+                    onChange={this.handleChange}
                   />
                 </label>
                 <label htmlFor="price">
