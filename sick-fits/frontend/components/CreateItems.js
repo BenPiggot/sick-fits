@@ -51,7 +51,8 @@ class CreateItems extends React.Component {
       body: data
     })
     const file = await res.json();
-    this.setState({ image: file.secure_url, largeImage: file.eager[0].url })
+    debugger
+    this.setState({ image: file.secure_url, largeImage: file.eager[0].secure_url })
   }
 
   render() {
