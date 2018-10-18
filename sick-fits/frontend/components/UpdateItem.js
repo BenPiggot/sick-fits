@@ -58,11 +58,6 @@ class UpdateItem extends React.Component {
         ...this.state
       }
     });
-    console.log('udpateds')
-    // Router.push({
-    //   pathname: '/item',
-    //   query: { id: res.data.createItem.id }
-    // })
   }
 
   render() {
