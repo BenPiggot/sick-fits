@@ -28,6 +28,9 @@ class RemoveFromCart extends Component {
       <Mutation 
         mutation={REMOVE_FROM_CART_MUTATION}
         variables={{id: this.props.id }}
+        refetchQueries={[
+          { query: CURRENT_USER_QUERY }
+        ]}
       >
         {(removeFromCart, { loading, error }) => (
           <BigButton 
