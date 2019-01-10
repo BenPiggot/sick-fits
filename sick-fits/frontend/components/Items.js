@@ -35,7 +35,6 @@ class Items extends React.Component {
   render() {
     return (
       <Center>
-        <p>Items</p>
         <Pagination page={this.props.page} />
         <Query query={ALL_ITEMS_QUERY} variables={{
           skip: this.props.page * perPage - perPage,

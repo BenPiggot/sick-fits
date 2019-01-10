@@ -5,6 +5,7 @@ import Router from 'next/router';
 import styled from 'styled-components';
 import NProgress from 'nprogress';
 import Cart from './Cart';
+import AutoComplete from './Search';
 
 Router.onRouteChangeStart = () => {
   NProgress.start()
@@ -64,7 +65,7 @@ const Header = props => {
         <Nav /> 
       </div>
       <div className="sub-bar">
-        <p>Search</p>
+        <AutoComplete></AutoComplete>
       </div>    
       <Cart />
     </StyledHeader>
